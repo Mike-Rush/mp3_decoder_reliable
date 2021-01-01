@@ -19,7 +19,7 @@
 
 `timescale 1 ns / 100 ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module antialias_imdct_coefficient (
 	clock,

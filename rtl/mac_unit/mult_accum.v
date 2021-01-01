@@ -18,7 +18,7 @@
 
 `timescale 1ns / 100ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module mult_accum(clock, resetn, control, data_a, data_b, acc_out);
 

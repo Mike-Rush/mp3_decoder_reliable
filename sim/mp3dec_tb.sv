@@ -1,10 +1,12 @@
-`include "defines.v"
+`include "../rtl/defines.v"
+`timescale 1 ns / 100 ps
 `define DEBUG_HUFF
 `define p_gclk 10
-`define p_sclk 3.7*p_gclk;
+`define p_sclk (3.7*`p_gclk)
 module mp3dec_tb;
 integer realframe;
 reg globalclk,sampleclk;
+reg global_rst_n;
 mp3_dec_top uut (
 	.MASTER_CLOCK_I  (globalclk),
 //	ALTERNATE_CLOCK_I,

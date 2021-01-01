@@ -1,11 +1,12 @@
 `include "defines.v"
 module dout_monitor(
 input clk,rst_n,
-input [`ADDRESS_WIDTH-1:0] addr,
+output reg [`ADDRESS_WIDTH-1:0] addr,
 input [`DATA_WIDTH-1:0] d_ch0,
 input [`DATA_WIDTH-1:0] d_ch1,
 input sample_clk
 );
+reg sample_clk_t;
 always @(posedge clk)
 begin
 	sample_clk_t<=sample_clk;

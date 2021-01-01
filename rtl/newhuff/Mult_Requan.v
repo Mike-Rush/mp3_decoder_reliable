@@ -20,7 +20,7 @@
 
 //`define DATA_WIDTH 16
 //`define ADDRESS_WIDTH 10
-`include "defines.v"
+`include "../defines.v"
 
 module Mult_Requan(data_a, data_b, mult_out);
 //--------------Input Ports----------------------- 

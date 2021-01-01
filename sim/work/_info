@@ -7,4 +7,475 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-de:/mp3_decoder/mp3_decoder_02/sim
+Z0 de:/mp3_decoder/mp3_decoder_02/sim
+vadd_accum
+Z1 !s110 1609495014
+!i10b 1
+!s100 UND:@7h@mZJhCLgckAR6`2
+I>@dLjX^gD>WRD`Lcn]mh03
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1609494388
+8../rtl/mac_unit/add_accum.v
+F../rtl/mac_unit/add_accum.v
+Z3 L0 23
+Z4 OL;L;10.6e;65
+r1
+!s85 0
+31
+Z5 !s108 1609495014.000000
+!s107 ..\rtl\defines.v|..\rtl\newhuff\.\huffctl_comb.v|..\rtl\newhuff\..\defines.v|..\rtl\memory\..\defines.v|..\rtl\mac_unit\..\defines.v|../rtl/mp3_dec_top.v|../rtl/dout_monitor.v|../rtl/newhuff/Requantizer_coefficient.v|../rtl/newhuff/streamer.v|../rtl/newhuff/Mult_Requan.v|../rtl/newhuff/huffctl.v|../rtl/newhuff/huffrom.v|../rtl/newhuff/huffctl_define.v|../rtl/memory/memctl32.v|../rtl/memory/dpram_S18_S18.v|../rtl/memory/mp3src_rom.sv|../rtl/mac_unit/polyphase_window_coefficient.v|../rtl/mac_unit/polyphase_sample_buffer.v|../rtl/mac_unit/polyphase_mdct_coefficient.v|../rtl/mac_unit/mult_accum.v|../rtl/mac_unit/mult_16.v|../rtl/mac_unit/mac_unit.v|../rtl/mac_unit/mac_ram.v|../rtl/mac_unit/imdct_previous_granule.v|../rtl/mac_unit/imdct_current_granule.v|../rtl/mac_unit/antialias_imdct_coefficient.v|../rtl/mac_unit/add_accum.v|./mp3dec_tb.sv|../rtl/defines.v|
+Z6 !s90 -reportprogress|300|-f|list.txt|
+!i113 1
+Z7 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z8 tCvgOpt 0
+vantialias_imdct_coefficient
+R1
+!i10b 1
+!s100 ?]ScblWkeWX@<TKl2`kdV0
+Imi[9eTj]QTPfIm^c`NDFV3
+R2
+R0
+w1609494394
+8../rtl/mac_unit/antialias_imdct_coefficient.v
+F../rtl/mac_unit/antialias_imdct_coefficient.v
+Z9 L0 24
+R4
+r1
+!s85 0
+31
+R5
+Z10 !s107 ..\rtl\defines.v|..\rtl\newhuff\.\huffctl_comb.v|..\rtl\newhuff\..\defines.v|..\rtl\memory\..\defines.v|..\rtl\mac_unit\..\defines.v|../rtl/mp3_dec_top.v|../rtl/dout_monitor.v|../rtl/newhuff/Requantizer_coefficient.v|../rtl/newhuff/streamer.v|../rtl/newhuff/Mult_Requan.v|../rtl/newhuff/huffctl.v|../rtl/newhuff/huffrom.v|../rtl/newhuff/huffctl_define.v|../rtl/memory/memctl32.v|../rtl/memory/dpram_S18_S18.v|../rtl/memory/mp3src_rom.sv|../rtl/mac_unit/polyphase_window_coefficient.v|../rtl/mac_unit/polyphase_sample_buffer.v|../rtl/mac_unit/polyphase_mdct_coefficient.v|../rtl/mac_unit/mult_accum.v|../rtl/mac_unit/mult_16.v|../rtl/mac_unit/mac_unit.v|../rtl/mac_unit/mac_ram.v|../rtl/mac_unit/imdct_previous_granule.v|../rtl/mac_unit/imdct_current_granule.v|../rtl/mac_unit/antialias_imdct_coefficient.v|../rtl/mac_unit/add_accum.v|./mp3dec_tb.sv|../rtl/defines.v|
+R6
+!i113 1
+R7
+R8
+vdout_monitor
+Z11 !s110 1609495015
+!i10b 1
+!s100 6588oK=QhmKMBV:i<<63a2
+IY4jH]?>gjY]`GV9o`nAJM3
+R2
+R0
+w1609494738
+8../rtl/dout_monitor.v
+F../rtl/dout_monitor.v
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vdpram_S18_S18
+R11
+!i10b 1
+!s100 1@PTCo^b[hXIY3InKooHa1
+I=kkKDlJUfQI?IScP0^<MH3
+R2
+R0
+w1175373851
+8../rtl/memory/dpram_S18_S18.v
+F../rtl/memory/dpram_S18_S18.v
+Z12 L0 21
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+ndpram_@s18_@s18
+vhuffctl
+R11
+!i10b 1
+!s100 >94_oI?:B;U_gbo>AVOU[3
+I_L45T;g]zU3RTXjJ>3o:K1
+R2
+R0
+w1609494938
+8../rtl/newhuff/huffctl.v
+F../rtl/newhuff/huffctl.v
+F..\rtl\newhuff\.\huffctl_comb.v
+L0 22
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vhuffrom
+R11
+!i10b 1
+!s100 PLkM5QeIi`BC4@I?z2kNX2
+Ia37X`N>51NiD9_k1F9GFB3
+R2
+R0
+Z13 w1175373853
+8../rtl/newhuff/huffrom.v
+F../rtl/newhuff/huffrom.v
+R12
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vimdct_current_granule
+R1
+!i10b 1
+!s100 _XiBON=VLW[PUoAX2Q:X02
+IK334LiP0=N:df=__fZdRH3
+R2
+R0
+w1609494398
+8../rtl/mac_unit/imdct_current_granule.v
+F../rtl/mac_unit/imdct_current_granule.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vimdct_previous_granule
+R1
+!i10b 1
+!s100 MkJ^J:JH`NelMH]5Zh6^Z3
+I1ldEBM^X2?=_kcZ0?aB8E2
+R2
+R0
+w1609494405
+8../rtl/mac_unit/imdct_previous_granule.v
+F../rtl/mac_unit/imdct_previous_granule.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmac_ram
+R1
+!i10b 1
+!s100 LigeeHR7MXnS8_05m]_1i0
+IX6n73H?Bb7kzC28K_o>0_1
+R2
+R0
+w1609494411
+8../rtl/mac_unit/mac_ram.v
+F../rtl/mac_unit/mac_ram.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmac_unit
+R11
+!i10b 1
+!s100 eTmF5cNke@^k4FafPmUFB2
+I69O_0QD]n5LAlG7M@z=k73
+R2
+R0
+w1609494420
+8../rtl/mac_unit/mac_unit.v
+F../rtl/mac_unit/mac_unit.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmemctl32
+R11
+!i10b 1
+!s100 jk:G[LdQ=YMjlHUYO>g?m0
+I[1IW:8?HLTBfVSF`ga`T:3
+R2
+R0
+w1609494463
+8../rtl/memory/memctl32.v
+F../rtl/memory/memctl32.v
+R9
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmp3_dec_top
+R11
+!i10b 1
+!s100 ?9`E7H`]7ga;4Mbg]?@l_0
+IN`>SVSDY=`3TLoD[;eIIV1
+R2
+R0
+w1609494619
+8../rtl/mp3_dec_top.v
+F../rtl/mp3_dec_top.v
+Z14 L0 25
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmp3dec_tb
+Z15 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+R1
+!i10b 1
+!s100 Ck>h0KU6ZHjYfl<L7K<zE2
+I23C^RJgLmB1EHaaiI_72e2
+R2
+!s105 mp3dec_tb_sv_unit
+S1
+R0
+w1609495005
+8./mp3dec_tb.sv
+F./mp3dec_tb.sv
+L0 6
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmp3src_rom
+R15
+R11
+!i10b 1
+!s100 667NV`[hDlE[W^O1RB1NR2
+IKz0mUFPX0J?E2iR1QL:bS0
+R2
+!s105 mp3src_rom_sv_unit
+S1
+R0
+w1609494836
+8../rtl/memory/mp3src_rom.sv
+F../rtl/memory/mp3src_rom.sv
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmult_16
+R11
+!i10b 1
+!s100 ;2An5MJmmYkUHU6bjNLbI1
+I9BZgii9OkJXiT]0;`A4Nb3
+R2
+R0
+w1609494424
+8../rtl/mac_unit/mult_16.v
+F../rtl/mac_unit/mult_16.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmult_accum
+R11
+!i10b 1
+!s100 HOUzB_CnV[XfZKX1Q8oWJ3
+ID@<k^PO]5P^dl_eSfE8Ji2
+R2
+R0
+w1609494428
+8../rtl/mac_unit/mult_accum.v
+F../rtl/mac_unit/mult_accum.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vMult_Requan
+R11
+!i10b 1
+!s100 CHi__UmE6XzYknTdA4nlf3
+IV9U^O^gmlR1?]5;Bl@z`R2
+R2
+R0
+w1609494489
+8../rtl/newhuff/Mult_Requan.v
+F../rtl/newhuff/Mult_Requan.v
+R14
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+n@mult_@requan
+vpolyphase_mdct_coefficient
+R11
+!i10b 1
+!s100 _[gj=7^JUf4>0d1nh[8[03
+I6DF?LNSgZQSACX1h``Pho1
+R2
+R0
+w1609494433
+8../rtl/mac_unit/polyphase_mdct_coefficient.v
+F../rtl/mac_unit/polyphase_mdct_coefficient.v
+R9
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vpolyphase_sample_buffer
+R11
+!i10b 1
+!s100 BPz24ZkO?fN]_I<2FGCaR3
+Ii=kkof@JgNPWmznT3@5eD0
+R2
+R0
+w1609494442
+8../rtl/mac_unit/polyphase_sample_buffer.v
+F../rtl/mac_unit/polyphase_sample_buffer.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vpolyphase_window_coefficient
+R11
+!i10b 1
+!s100 1@LGo8YJA>;@3f^`<6TXC3
+Ih:VJG@aWLe[g4RSWgFD0_2
+R2
+R0
+w1609494449
+8../rtl/mac_unit/polyphase_window_coefficient.v
+F../rtl/mac_unit/polyphase_window_coefficient.v
+R9
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vrequantizer_coefficient
+R11
+!i10b 1
+!s100 bniaM^3G?E>Whk01WL6;`0
+Iz^gCH_Co=mHEF3SV2Nd;N2
+R2
+R0
+w1609494492
+8../rtl/newhuff/Requantizer_coefficient.v
+F../rtl/newhuff/Requantizer_coefficient.v
+L0 26
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vstreamer
+R11
+!i10b 1
+!s100 :o=R@Wm?4gPKLR7;JXBSc3
+IW9:g^FL?8K;I7DjIlK2Tf2
+R2
+R0
+R13
+8../rtl/newhuff/streamer.v
+F../rtl/newhuff/streamer.v
+R12
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8

@@ -18,7 +18,7 @@
 
 `timescale 1ns / 100ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module mac_ram(clock, mem_en, address, data_out);
 

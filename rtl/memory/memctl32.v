@@ -18,7 +18,7 @@
 
 `timescale 1 ns / 100 ps
 
-`include "defines.v"
+`include "../defines.v"
 `define BIG_ROM_ADDRESS_WIDTH 15
 
 module memctl32 (

@@ -19,7 +19,7 @@
 
 `timescale 1 ns / 100 ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module polyphase_mdct_coefficient (
 	clock,

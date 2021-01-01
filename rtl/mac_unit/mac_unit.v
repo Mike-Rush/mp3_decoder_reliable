@@ -18,7 +18,7 @@
 
 `timescale 1ns / 100ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module mac_unit(
 	MAC_CLOCK_I, 

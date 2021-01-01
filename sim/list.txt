@@ -1,10 +1,10 @@
 ../rtl/defines.v
-./mp3dec_tb.v
+./mp3dec_tb.sv
 ../rtl/mac_unit/*.v
-../rtl/memory/mp3src_rom.v
+../rtl/memory/mp3src_rom.sv
 ../rtl/memory/dpram_S18_S18.v
 ../rtl/memory/memctl32.v
-../rtl/newhuff/huff_define.v
+../rtl/newhuff/huffctl_define.v
 ../rtl/newhuff/huffrom.v
 ../rtl/newhuff/huffctl.v
 ../rtl/newhuff/Mult_Requan.v

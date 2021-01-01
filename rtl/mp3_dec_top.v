@@ -22,34 +22,35 @@
 
 `include "defines.v"
 
-module mp3_top (
-	MASTER_CLOCK_I,
+module mp3_dec_top (
+	input MASTER_CLOCK_I,
 //	ALTERNATE_CLOCK_I,
-//	AC97_BIT_CLOCK_I,
+	input AC97_BIT_CLOCK_I,
+	input global_rst_n,
+	input module_en,
+	input sample_clk
 //	AC97_SYNCH_O,
 //	AC97_DATA_IN_I,
 //	AC97_DATA_OUT_O,
 //	AC97_BEEP_TONE_O,
-	global_rst_n,
-	module_en,
 //	PAL_NTSC,
-	S_VIDEO,
+//	S_VIDEO,
 //	USER_LED0_O,			 
 //	USER_LED1_O,
 //	STARTUP_O
 );
 
-    input MASTER_CLOCK_I;
+//    input MASTER_CLOCK_I;
 //	 input ALTERNATE_CLOCK_I;
 //    input AC97_BIT_CLOCK_I;		// AC97 clock
 //    output AC97_SYNCH_O;			// AC97 synh output
 //    input AC97_DATA_IN_I;			// AC97 data in
 //    output AC97_DATA_OUT_O;		// AC97 data out
 //    output AC97_BEEP_TONE_O;		// AC97 Beep setting
-    input global_rst_n;			// reset signal
-    input module_en;
+//    input global_rst_n;			// reset signal
+//    input module_en;
 //	 input PAL_NTSC;
-	 input S_VIDEO;
+//	 input S_VIDEO;
 //    output USER_LED0_O;
 //    output USER_LED1_O;
 //    output STARTUP_O;
@@ -169,14 +170,13 @@ module mp3_top (
 	wire [`DATA_WIDTH-1:0] pcm_ch0_data,pcm_ch1_data;
 	assign pcm_ch0_data=CH0_PCM_RAM_read_data;
 	assign pcm_ch1_data=CH1_PCM_RAM_read_data;
-	reg [1:0] AC97_sample_frequency_cur_granule, AC97_sample_frequency_prv_granule;
+	//reg [1:0] AC97_sample_frequency_cur_granule, AC97_sample_frequency_prv_granule;
 	
 //	reg [2:0] state;
 
 	// Internal reg
 	reg system_ready;
-
-	clock_gen clock_module (
+	/*clock_gen clock_module (
 		.RESETN_I(Clock_resetn),
 		.MASTER_CLOCK_I(MASTER_CLOCK_I),
 //		.ALTERNATE_CLOCK_I(ALTERNATE_CLOCK_I),
@@ -186,7 +186,13 @@ module mp3_top (
 		.HUFF_CLOCK_O(HUFF_clock),
 		.AC97_BIT_CLOCK_O(AC97_bit_clock),
 		.CLOCK_READY_O(Clock_ready)
-	);
+	);*/
+	assign AC97_bit_clock=AC97_BIT_CLOCK_I;
+	assign master_clock=MASTER_CLOCK_I;
+	assign MAC_clock=master_clock;
+	assign HUFF_clock=master_clock;
+	assign Clock_ready=1'b1;
+
 
 	memctl32 memfill(
     .CLOCK_I(MAC_clock),
@@ -397,6 +403,7 @@ module mp3_top (
 	dout_monitor dout_monitor_CH0(
 		.clk       (AC97_bit_clock),
 		.rst_n     (AC97_resetn),
+		.sample_clk(sample_clk),
 		.addr      (PCM_RAM_read_address_bit_clock),
 		.d_ch0     (CH0_PCM_RAM_read_data),
 		.d_ch1     (CH1_PCM_RAM_read_data)
@@ -440,7 +447,6 @@ module mp3_top (
 		.CH1_PCM_DATA_I(CH1_PCM_RAM_read_data),
 		.STARTUP_O(STARTUP_O)
 	); */
-	dout_monitor ()
 
 	// For debugging
 	parameter counter_width = 5;	

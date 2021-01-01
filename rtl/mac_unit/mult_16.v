@@ -18,7 +18,7 @@
 
 `timescale 1 ns / 100 ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module mult_16(data_a, data_b, mult_out);
 

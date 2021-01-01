@@ -17,7 +17,7 @@
 
 
 `timescale 1ns / 100ps
-`include "defines.v"
+`include "../defines.v"
 
 module huffctl(
 /*
@@ -1152,7 +1152,7 @@ end  // always
     end  // if resetn
   end  // always
   
-  `include "newhuff/huffctl_comb.v"
+  `include "./huffctl_comb.v"
     
 // Instantiate Mult_Requan module
 Mult_Requan Mult_Requan_module (

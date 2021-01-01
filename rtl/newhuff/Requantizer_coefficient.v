@@ -21,7 +21,7 @@
 
 //`define DATA_WIDTH 16
 //`define ADDRESS_WIDTH 10
-`include "defines.v"
+`include "../defines.v"
 
 module requantizer_coefficient (
 	clock,

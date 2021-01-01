@@ -19,7 +19,7 @@
 
 `timescale 1ns / 100ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module polyphase_window_coefficient(
 	clock,

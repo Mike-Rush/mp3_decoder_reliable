@@ -18,7 +18,7 @@
 
 `timescale 1ns / 100ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module imdct_current_granule(clock, mem_en, wr_en, address, data_in ,data_out);
 

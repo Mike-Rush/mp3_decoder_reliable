@@ -18,7 +18,7 @@
 
 `timescale 1 ns / 100 ps
 
-`include "defines.v"
+`include "../defines.v"
 
 module add_accum(clock, resetn, control, add_in1, add_in2, acc_out);
 
