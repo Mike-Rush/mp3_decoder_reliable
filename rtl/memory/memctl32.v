@@ -101,9 +101,14 @@ always @ (posedge CLOCK_I or negedge RESETN_I) begin
 	end
 end
 
-  bigrom bigmp3rom(.clk(CLOCK_I),
+  /*bigrom bigmp3rom(.clk(CLOCK_I),
    .addressA(physical_address),.dataoutA(DATA_O),
    .addressB(`BIG_ROM_ADDRESS_WIDTH'h0),.dataoutB()
-  );
+  );*/
+  mp3src_rom mp3src_rom_u0(
+  	.clk (clk),
+  	.addr(physical_address),
+  	.data(DATA_O)
+  	);
 
 endmodule
