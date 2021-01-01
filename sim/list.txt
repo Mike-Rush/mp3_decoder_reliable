@@ -1,0 +1,14 @@
+../defines.v
+./mp3dec_tb.v
+../mac_unit/*.v
+../memory/mp3src_rom.v
+../memory/dpram_S18_S18.v
+../memory/memctl32.v
+../newhuff/huff_define.v
+../newhuff/huffrom.v
+../newhuff/huffctl.v
+../newhuff/Mult_Requan.v
+../newhuff/streamer.v
+../newhuff/Requantizer_coefficient.v
+../dout_monitor.v
+../mp3_dec_top.v

@@ -5,7 +5,7 @@
 module mp3dec_tb;
 integer realframe;
 reg globalclk,sampleclk;
-mp3_top uut (
+mp3_dec_top uut (
 	.MASTER_CLOCK_I  (globalclk),
 //	ALTERNATE_CLOCK_I,
 	.AC97_BIT_CLOCK_I(globalclk),
@@ -66,7 +66,14 @@ mp3_top uut (
 			  end
 		  end
 `endif
+always #(`p_gclk/2.0) globalclk=~globalclk;
+always #(`p_sclk/2.0) sampleclk=~sampleclk;
 initial begin
 	realframe=0;
+	globalclk=0;
+	sampleclk=0;
+	global_rst_n=0;
+	#(`p_gclk*100)
+	global_rst_n=1;
 end
 endmodule
