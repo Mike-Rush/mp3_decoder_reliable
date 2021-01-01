@@ -1,6 +1,27 @@
+`include "defines.v"
+`define DEBUG_HUFF
+`define p_gclk 10
+`define p_sclk 3.7*p_gclk;
 module mp3dec_tb;
-
-
+integer realframe;
+reg globalclk,sampleclk;
+mp3_top uut (
+	.MASTER_CLOCK_I  (globalclk),
+//	ALTERNATE_CLOCK_I,
+	.AC97_BIT_CLOCK_I(globalclk),
+	.global_rst_n(global_rst_n),
+	.module_en(1'b1),
+	.sample_clk(sampleclk)
+//	AC97_SYNCH_O,
+//	AC97_DATA_IN_I,
+//	AC97_DATA_OUT_O,
+//	AC97_BEEP_TONE_O,
+//	PAL_NTSC,
+//	S_VIDEO,
+//	USER_LED0_O,			 
+//	USER_LED1_O,
+//	STARTUP_O
+);
 ///////////////////////////////// Ethernet //////////////////////////////////////////
 		  always @ (negedge uut.ETH_done) begin
 			$write("ETH started...\n");
@@ -20,10 +41,6 @@ module mp3dec_tb;
 		  	$write("Huffman started...\n");
 		  end
 	`ifdef DEBUG_HUFF
-			integer realframe;
-			initial begin
-				realframe = 0;
-			end
 
 			always @ (posedge uut.HUFF_clock) begin
 				if (uut.HUFFMANDECODER.state == 6)
@@ -49,4 +66,7 @@ module mp3dec_tb;
 			  end
 		  end
 `endif
+initial begin
+	realframe=0;
+end
 endmodule
