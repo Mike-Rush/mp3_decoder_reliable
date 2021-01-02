@@ -21,7 +21,9 @@
 `timescale 1 ns/ 100 ps
 
 `include "defines.v"
-
+`define GSTAGE_INIT  0
+`define GSTAGE_HUFF  1
+`define GSTAGE_MAC 	 2
 module mp3_dec_top2 (
 	input MASTER_CLOCK_I,
 //	ALTERNATE_CLOCK_I,
@@ -169,6 +171,8 @@ module mp3_dec_top2 (
 	wire [`DATA_WIDTH-1:0] 		CH0_PCM_RAM_read_data;
 	wire [`DATA_WIDTH-1:0] 		CH1_PCM_RAM_read_data;
 	wire 								AC97_source_select;
+	reg [5:0] GS;
+
 	wire [`DATA_WIDTH-1:0] pcm_ch0_data,pcm_ch1_data;
 	assign pcm_ch0_data=CH0_PCM_RAM_read_data;
 	assign pcm_ch1_data=CH1_PCM_RAM_read_data;
@@ -627,15 +631,15 @@ assign HUFF_DP_DATA=fifo_datain;
 
 	//reg [1:0] MP3_state;
 
-	always @ (posedge HUFF_clock) begin
+	/*always @ (posedge HUFF_clock) begin
 		CH0_MAC_RAM_read_en_HUFF_clock <= CH0_MAC_RAM_read_en_MAC_clock;
 		CH1_MAC_RAM_read_en_HUFF_clock <= CH1_MAC_RAM_read_en_MAC_clock;
 	end
 	
-	assign MAC_RAM_Idle = ~(CH0_MAC_RAM_read_en_HUFF_clock || CH1_MAC_RAM_read_en_HUFF_clock);
+	assign MAC_RAM_Idle = ~(CH0_MAC_RAM_read_en_HUFF_clock || CH1_MAC_RAM_read_en_HUFF_clock);*/
 
 	// state machine for handshaking with huffman
-	always @ (posedge HUFF_done or negedge MAC_resetn) begin
+	/*always @ (posedge HUFF_done or negedge MAC_resetn) begin
 		if (MAC_resetn == 1'b0) begin
 			MP3_Info_Frequency_buffer <= 2'd0;
 			MP3_Info_Mode_buffer <= 2'd0;
@@ -660,6 +664,54 @@ assign HUFF_DP_DATA=fifo_datain;
 				MP3_Info_CH1_MAC_mixed_block_buffer <= MP3_Info_CH1_MAC_mixed_block;
 				MP3_Info_CH1_MAC_switching_buffer <= MP3_Info_CH1_MAC_switching;
 //			end
+		end
+	end*/
+	always @(posedge master_clock or negedge MAC_resetn) begin
+		if (!MAC_resetn) begin
+			MP3_Info_CH0_MAC_block_type_MAC_clock <= 0;
+			MP3_Info_CH0_MAC_mixed_block_MAC_clock <= 0;
+			MP3_Info_CH0_MAC_switching_MAC_clock <= 0;
+			MP3_Info_CH1_MAC_block_type_MAC_clock <= 0;
+			MP3_Info_CH1_MAC_mixed_block_MAC_clock <= 0;
+			MP3_Info_CH1_MAC_switching_MAC_clock <= 0;
+			MP3_Info_Mode_MAC_clock<=0;
+			GS<=`GSTAGE_INIT;
+			MAC_RAM_Idle<=0;
+			CH0_MAC_start<=0;
+			CH1_MAC_start<=0;
+		end else begin
+			case (GS)
+			`GSTAGE_INIT:begin
+				GS<=`GSTAGE_HUFF;
+				MAC_RAM_Idle<=1;
+			end
+			`GSTAGE_HUFF:begin
+				if (Huffdone) begin
+					$display("GLOBAL:HUFF_DONE");
+					MP3_Info_CH0_MAC_block_type_MAC_clock<=MP3_Info_CH0_MAC_block_type;
+					MP3_Info_CH0_MAC_mixed_block_MAC_clock<=MP3_Info_CH0_MAC_mixed_block;
+					MP3_Info_CH0_MAC_switching_MAC_clock<=MP3_Info_CH0_MAC_switching;
+					MP3_Info_CH1_MAC_block_type_MAC_clock<=MP3_Info_CH1_MAC_block_type;
+					MP3_Info_CH1_MAC_mixed_block_MAC_clock<=MP3_Info_CH1_MAC_mixed_block;
+					MP3_Info_CH1_MAC_switching_MAC_clock<=MP3_Info_CH1_MAC_switching;
+					MP3_Info_Mode_MAC_clock<=MP3_Info_Mode;
+					MAC_RAM_Idle<=0;
+					CH0_MAC_start <= 1'b1;
+					if ((MP3_Info_Mode == 2'b00) || (MP3_Info_Mode == 2'b01)) CH1_MAC_start <= 1'b1;
+					else CH1_MAC_start <= 1'b0;
+					GS<=`GSTATE_MAC;
+				end
+			end
+			`GSTAGE_MAC:begin
+				CH0_MAC_start<=1'b0;
+				CH1_MAC_start<=1'b0;
+				if (MAC_done) begin
+					$display("GLOBAL:MAC_DONE");
+					MAC_RAM_Idle<=1'b1;
+					GS<=`GSTAGE_HUFF;
+				end
+			end
+			endcase
 		end
 	end
 endmodule
