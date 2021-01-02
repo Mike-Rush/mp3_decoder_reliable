@@ -4,6 +4,7 @@
 ../rtl/memory/mp3src_rom.sv
 ../rtl/memory/dpram_S18_S18.v
 ../rtl/memory/memctl32.v
+../rtl/memory/bigrom.v
 ../rtl/newhuff/huffctl_define.v
 ../rtl/newhuff/huffrom.v
 ../rtl/newhuff/huffctl.v
@@ -12,3 +13,4 @@
 ../rtl/newhuff/Requantizer_coefficient.v
 ../rtl/dout_monitor.v
 ../rtl/mp3_dec_top.v
+E:/Xilinx/Vivado/2019.1/data/verilog/src/glbl.v

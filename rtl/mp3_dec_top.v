@@ -400,7 +400,7 @@ module mp3_dec_top (
     .SSRB(1'b0),
 	 .WEB(1'b0)
   );
-	dout_monitor dout_monitor_CH0(
+	dout_monitor dout_monitor_u0(
 		.clk       (AC97_bit_clock),
 		.rst_n     (AC97_resetn),
 		.sample_clk(sample_clk),
@@ -570,6 +570,7 @@ module mp3_dec_top (
 				// start ethernet at the same time as MAC
 				if ((ETH_start == 1'b0) && (ETH_done == 1'b1)
 				 && (PCM_RAM_read_address_MAC_clock == CH0_PCM_RAM_write_address_buffer)) begin
+				//) begin
 					// start the Ethernet
 					ETH_start <= 1'b1;
 

@@ -715,7 +715,7 @@ module bigrom(clk,addressA,dataoutA,addressB,dataoutB);
     .WEB(1'b0)
   );
 
-  `include "memory/rom/spot1.v"
+  `include "./rom/mp3_src.v"
 //  `include "memory/rom/06.v"
   //`include "memory/rom/nissin.v"
   //`include "memory/rom/Pancakes.v"
