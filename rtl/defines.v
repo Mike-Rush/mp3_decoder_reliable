@@ -15,7 +15,7 @@
 //
 //==============================================================================
 
-
+`define SIM_FRAME_NUM 240
 `ifdef DATA_WIDTH 
 `else 
 `define DATA_WIDTH 16

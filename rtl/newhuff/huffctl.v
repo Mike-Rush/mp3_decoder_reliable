@@ -484,6 +484,7 @@ end  // always
           //state <= `STATE_HEADER_MAIN_DATA_BEGIN;
           //counter <= counter + 1;
           frame <= frame + 1;
+          if (frame==`SIM_FRAME_NUM) $stop;
           $write("*************************************************************frame: %d\n",frame);
           $write("framesize: %d\n",huffrom_dataout0[11:0]);
         end
