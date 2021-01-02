@@ -32,7 +32,7 @@ module mp3_dec_top2 (
 	input module_en,
 	input sample_clk,
 	input [15:0] fifo_datain,
-    output fifo_ren,
+    output fifo_ren
 //	AC97_SYNCH_O,
 //	AC97_DATA_IN_I,
 //	AC97_DATA_OUT_O,
@@ -68,8 +68,8 @@ module mp3_dec_top2 (
 	wire 								master_clock;
    
 	// For memory controller
-	/*reg 								ETH_resetn;
-	reg 								ETH_start;
+	reg 								ETH_resetn;
+	/*reg 								ETH_start;
 	wire 								ETH_done;
 	wire [`ADDRESS_WIDTH-1:0] 	ETH_DP_ADDRESS;
 	wire [`DATA_WIDTH-1:0] 		ETH_DP_DATA;
@@ -86,7 +86,7 @@ module mp3_dec_top2 (
 	// for Huff/Dequantizer
 	reg 								HUFF_resetn;
 	wire								HUFF_done;
-	wire 								MAC_RAM_Idle;
+	reg 								MAC_RAM_Idle;
 
 	wire [`DATA_WIDTH-1:0] 		HUFF_DP_DATA;
 	wire [`ADDRESS_WIDTH-1:0] 	HUFF_DP_ADDRESS;
@@ -165,17 +165,18 @@ module mp3_dec_top2 (
 
 	// For AC97
 	reg 								AC97_resetn;
-	reg [1:0] 						sample_frequency;
+	/*reg [1:0] 						sample_frequency;
 	wire [`ADDRESS_WIDTH-1:0] 	PCM_RAM_read_address_bit_clock;
 	reg [`ADDRESS_WIDTH-1:0] 	PCM_RAM_read_address_MAC_clock;
 	wire [`DATA_WIDTH-1:0] 		CH0_PCM_RAM_read_data;
 	wire [`DATA_WIDTH-1:0] 		CH1_PCM_RAM_read_data;
-	wire 								AC97_source_select;
+	wire 								AC97_source_select;*/
+
 	reg [5:0] GS;
 
-	wire [`DATA_WIDTH-1:0] pcm_ch0_data,pcm_ch1_data;
+	/*wire [`DATA_WIDTH-1:0] pcm_ch0_data,pcm_ch1_data;
 	assign pcm_ch0_data=CH0_PCM_RAM_read_data;
-	assign pcm_ch1_data=CH1_PCM_RAM_read_data;
+	assign pcm_ch1_data=CH1_PCM_RAM_read_data;*/
 	//reg [1:0] AC97_sample_frequency_cur_granule, AC97_sample_frequency_prv_granule;
 	
 //	reg [2:0] state;
@@ -243,7 +244,7 @@ always @(posedge HUFF_clock)
 begin
 	HUFF_DP_ADDRESS_BUF<=HUFF_DP_ADDRESS;
 end
-assign fifo_ren==(HUFF_DP_ADDRESS[0]!=HUFF_DP_ADDRESS_BUF[0]);
+assign fifo_ren=(HUFF_DP_ADDRESS[0]!=HUFF_DP_ADDRESS_BUF[0]);
 assign HUFF_DP_DATA=fifo_datain;
 	huffctl HUFFMANDECODER (
 	 //.skipframe4(skipframe4),
@@ -686,7 +687,7 @@ assign HUFF_DP_DATA=fifo_datain;
 				MAC_RAM_Idle<=1;
 			end
 			`GSTAGE_HUFF:begin
-				if (Huffdone) begin
+				if (HUFF_done) begin
 					$display("GLOBAL:HUFF_DONE");
 					MP3_Info_CH0_MAC_block_type_MAC_clock<=MP3_Info_CH0_MAC_block_type;
 					MP3_Info_CH0_MAC_mixed_block_MAC_clock<=MP3_Info_CH0_MAC_mixed_block;
@@ -699,7 +700,7 @@ assign HUFF_DP_DATA=fifo_datain;
 					CH0_MAC_start <= 1'b1;
 					if ((MP3_Info_Mode == 2'b00) || (MP3_Info_Mode == 2'b01)) CH1_MAC_start <= 1'b1;
 					else CH1_MAC_start <= 1'b0;
-					GS<=`GSTATE_MAC;
+					GS<=`GSTAGE_MAC;
 				end
 			end
 			`GSTAGE_MAC:begin

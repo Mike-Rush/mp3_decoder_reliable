@@ -2,7 +2,7 @@
 `timescale 1 ns / 100 ps
 `define p_gclk 10
 `define p_sclk (3.7*`p_gclk)
-module mp3dec_tb;
+module mp3dec_tb_v01;
 integer realframe,mismatch;
 reg globalclk,sampleclk;
 reg global_rst_n;
@@ -28,7 +28,7 @@ mp3_dec_top2 uut (
 //	STARTUP_O
 );
 ///////////////////////////////// Gen&&Dump Data //////////////////////////////////////////
-integer fpcm,fmp3,i;
+integer fpcm,fmp3,i,mp3_size,mem_ptr;
 reg [`DATA_WIDTH-1:0] mem[(1<<`ADDRESS_WIDTH)-1:0];
 initial begin
   fpcm=$fopen("./out.pcm","wb");
@@ -44,17 +44,17 @@ initial begin
   begin
     $display("mp3memory[%0d]=%04x",i,mem[i]);
   end
-  fifo_datain=mp3memory[0];
+  mem_ptr=0;
+  fifo_datain=mem[0];
   forever begin
     @(posedge globalclk)
     if (global_rst_n) begin
       if (fifo_ren) begin
         mem_ptr++;
-        fifo_datain=mp3memory[mem_ptr];
+        fifo_datain=mem[mem_ptr];
         if (mem_ptr==mp3_size/4) begin
           $display("mp3 reach end\n");
-          fifo_empty=1'b1;
-          #(`p_clk*500000);
+          #(`p_gclk*500000);
           $stop;
         end
       end
