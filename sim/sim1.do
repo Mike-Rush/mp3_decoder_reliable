@@ -14,4 +14,5 @@ add wave -group input_dat sim:uut/HUFF_clock
 add wave -group input_dat sim:uut/HUFF_DP_ADDRESS
 add wave -group input_dat sim:uut/HUFF_DP_DATA
 #add wave -group mp3dec_dout sim:uut/dout_monitor_u0/*
+add wave -group mp3dec_huff_streamer sim:uut/HUFFMANDECODER/inputstream/*
 run -all

@@ -240,9 +240,10 @@ module mp3_dec_top2 (
   //wire skipframe4;
 	// New huffman and requantizer with one RAM
 reg [`ADDRESS_WIDTH-1:0] HUFF_DP_ADDRESS_BUF;
-always @(posedge HUFF_clock)
+always @(posedge HUFF_clock or negedge global_rst_n)
 begin
-	HUFF_DP_ADDRESS_BUF<=HUFF_DP_ADDRESS;
+	if (!global_rst_n) HUFF_DP_ADDRESS_BUF<=0;
+	else HUFF_DP_ADDRESS_BUF<=HUFF_DP_ADDRESS;
 end
 assign fifo_ren=(HUFF_DP_ADDRESS[0]!=HUFF_DP_ADDRESS_BUF[0]);
 assign HUFF_DP_DATA=fifo_datain;
@@ -499,10 +500,12 @@ assign HUFF_DP_DATA=fifo_datain;
 			AC97_resetn <= 1'b0;
 			ETH_resetn <= 1'b0;
 			MAC_resetn <= 1'b0;
+			HUFF_resetn<=1'b0;
 		end else begin
 			AC97_resetn <= module_en;
 			ETH_resetn <= module_en;
 			MAC_resetn <= module_en;
+			HUFF_resetn<=module_en;
 		end
 	end
 	/*
@@ -680,11 +683,13 @@ assign HUFF_DP_DATA=fifo_datain;
 			MAC_RAM_Idle<=0;
 			CH0_MAC_start<=0;
 			CH1_MAC_start<=0;
+			//HUFF_resetn<=1'b0;
 		end else begin
 			case (GS)
 			`GSTAGE_INIT:begin
 				GS<=`GSTAGE_HUFF;
 				MAC_RAM_Idle<=1;
+				//HUFF_resetn<=1'b1;
 			end
 			`GSTAGE_HUFF:begin
 				if (HUFF_done) begin
@@ -696,6 +701,7 @@ assign HUFF_DP_DATA=fifo_datain;
 					MP3_Info_CH1_MAC_mixed_block_MAC_clock<=MP3_Info_CH1_MAC_mixed_block;
 					MP3_Info_CH1_MAC_switching_MAC_clock<=MP3_Info_CH1_MAC_switching;
 					MP3_Info_Mode_MAC_clock<=MP3_Info_Mode;
+					//HUFF_resetn<=1'b0;
 					MAC_RAM_Idle<=0;
 					CH0_MAC_start <= 1'b1;
 					if ((MP3_Info_Mode == 2'b00) || (MP3_Info_Mode == 2'b01)) CH1_MAC_start <= 1'b1;
@@ -709,7 +715,7 @@ assign HUFF_DP_DATA=fifo_datain;
 				if (MAC_done) begin
 					$display("GLOBAL:MAC_DONE");
 					MAC_RAM_Idle<=1'b1;
-					GS<=`GSTAGE_HUFF;
+					GS<=`GSTAGE_INIT;
 				end
 			end
 			endcase
