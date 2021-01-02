@@ -29,7 +29,7 @@ mp3_dec_top2 uut (
 );
 ///////////////////////////////// Gen&&Dump Data //////////////////////////////////////////
 integer fpcm,fmp3,i,mp3_size,mem_ptr;
-reg [`DATA_WIDTH-1:0] mem[(1<<`ADDRESS_WIDTH)-1:0];
+reg [`DATA_WIDTH-1:0] mem[(1<<`SIM_MP3ROM_DATA_WIDTH)-1:0];
 initial begin
   fpcm=$fopen("./out.pcm","wb");
 end

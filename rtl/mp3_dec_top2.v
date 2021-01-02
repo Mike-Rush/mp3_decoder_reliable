@@ -21,9 +21,10 @@
 `timescale 1 ns/ 100 ps
 
 `include "defines.v"
-`define GSTAGE_INIT  0
-`define GSTAGE_HUFF  1
-`define GSTAGE_MAC 	 2
+`define GSTAGE_INIT  		0
+`define GSTAGE_HUFF  		1
+`define GSTAGE_MAC 	 		2
+`define GSTAGE_PRE_MAC 		3
 module mp3_dec_top2 (
 	input MASTER_CLOCK_I,
 //	ALTERNATE_CLOCK_I,
@@ -670,6 +671,7 @@ assign HUFF_DP_DATA=fifo_datain;
 //			end
 		end
 	end*/
+reg [7:0] dummy_cycle_cnt;
 	always @(posedge master_clock or negedge MAC_resetn) begin
 		if (!MAC_resetn) begin
 			MP3_Info_CH0_MAC_block_type_MAC_clock <= 0;
@@ -683,6 +685,7 @@ assign HUFF_DP_DATA=fifo_datain;
 			MAC_RAM_Idle<=0;
 			CH0_MAC_start<=0;
 			CH1_MAC_start<=0;
+			dummy_cycle_cnt<=0;
 			//HUFF_resetn<=1'b0;
 		end else begin
 			case (GS)
@@ -706,8 +709,15 @@ assign HUFF_DP_DATA=fifo_datain;
 					CH0_MAC_start <= 1'b1;
 					if ((MP3_Info_Mode == 2'b00) || (MP3_Info_Mode == 2'b01)) CH1_MAC_start <= 1'b1;
 					else CH1_MAC_start <= 1'b0;
-					GS<=`GSTAGE_MAC;
+					GS<=`GSTAGE_PRE_MAC;dummy_cycle_cnt<=0;
 				end
+			end
+			`GSTAGE_PRE_MAC:begin
+				CH0_MAC_start<=1'b0;
+				CH1_MAC_start<=1'b0;
+				dummy_cycle_cnt<=dummy_cycle_cnt+1'b1;
+				if (dummy_cycle_cnt==10) GS<=`GSTAGE_MAC;
+				else GS<=`GSTAGE_PRE_MAC;
 			end
 			`GSTAGE_MAC:begin
 				CH0_MAC_start<=1'b0;
@@ -718,6 +728,7 @@ assign HUFF_DP_DATA=fifo_datain;
 					GS<=`GSTAGE_INIT;
 				end
 			end
+			default:GS<=`GSTAGE_INIT;
 			endcase
 		end
 	end

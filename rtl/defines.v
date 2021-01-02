@@ -20,6 +20,7 @@
 `else 
 `define DATA_WIDTH 16
 `define ADDRESS_WIDTH 10
+`define SIM_MP3ROM_DATA_WIDTH 22
 `endif
 
 `ifdef LOW
