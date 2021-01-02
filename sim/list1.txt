@@ -1,0 +1,12 @@
+../rtl/defines.v
+./mp3dec_tb_v01.sv
+../rtl/mac_unit/*.v
+../rtl/memory/dpram_S18_S18.v
+../rtl/newhuff/huffctl_define.v
+../rtl/newhuff/huffrom.v
+../rtl/newhuff/huffctl.v
+../rtl/newhuff/Mult_Requan.v
+../rtl/newhuff/streamer.v
+../rtl/newhuff/Requantizer_coefficient.v
+../rtl/mp3_dec_top2.v
+E:/Xilinx/Vivado/2019.1/data/verilog/src/glbl.v

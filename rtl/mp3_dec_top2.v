@@ -504,7 +504,7 @@ assign HUFF_DP_DATA=fifo_datain;
 			MAC_resetn <= module_en;
 		end
 	end
-
+	/*
 	always @ (posedge MAC_clock) begin
 		// buffer read address across bit clock domain
 		PCM_RAM_read_address_MAC_clock <= PCM_RAM_read_address_bit_clock;
@@ -565,7 +565,7 @@ assign HUFF_DP_DATA=fifo_datain;
 			endcase
 		end
 	end
-
+	*/
 	//reg [2:0] ETH_state;
 	//reg HUFF_address_msb_buffer;
 
